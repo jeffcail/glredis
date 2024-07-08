@@ -26,17 +26,17 @@ func init() {
 }
 
 func main() {
-	publish, err := glredis.NewPubSub().Publish(rdb, []string{"go"}, "123456")
-	if err != nil {
-		log.Fatal(fmt.Sprintf("err: %v\n", err))
-	}
-
-	fmt.Println(fmt.Sprintf("publish: %d\n", publish))
+	//publish, err := glredis.NewPubSub().Publish(rdb, []string{"go"}, "123456")
+	//if err != nil {
+	// log.Fatal(fmt.Sprintf("err: %v\n", err))
+	//}
+	//
+	//fmt.Println(fmt.Sprintf("publish: %d\n", publish))
 
 	//glredis.NewGLRSortedSet().SetZAdd(rdb, []string{"tt"}, 1, "abc")
 	//zRand, err := glredis.NewGLRSortedSet().SetZRange(rdb, []string{"myzset"}, 0, 10)
 	//if err != nil {
-	//	log.Fatal(fmt.Sprintf("err: %v\n", err))
+	// log.Fatal(fmt.Sprintf("err: %v\n", err))
 	//}
 	//
 	//fmt.Println(fmt.Sprintf("zRand: %v\n", zRand))
@@ -67,7 +67,7 @@ func main() {
 
 	//res := glredis.NewGLRList().ListPush(rdb, []string{"zk"}, "golang")
 	////if err != nil {
-	////	log.Fatalf("err: %v", err)
+	//// log.Fatalf("err: %v", err)
 	////}
 	//fmt.Printf("push lish success: %v\n", res)
 	//
@@ -75,101 +75,143 @@ func main() {
 	//
 	//fmt.Printf("get list len success: %v\n", res1)
 
-	//err := glredis.NewGLRHash().SetHashKey(rdb, []string{"book"}, "golang", "abc")
+	//err := glredis.NewGLRHash().HSetHashKey(rdb, []string{"book"}, "java", "123")
 	//if err != nil {
-	//	log.Fatalf("err: %v", err)
+	// log.Fatalf("err: %v", err)
 	//}
 	//fmt.Printf("set hash key success\n")
+
 	//
 	//ret, err := glredis.NewGLRHash().GetHashFiled(rdb, []string{"book"}, "golang")
 	//if err != nil {
-	//	log.Fatalf("err: %v", err)
+	// log.Fatalf("err: %v", err)
 	//}
 	//fmt.Printf("get hash field success; %v\n", ret)
 
 	//err = glredis.NewGLRHash().DelHashField(rdb, []string{"book"}, "golang")
 	//if err != nil {
-	//	log.Fatalf("err: %v", err)
+	// log.Fatalf("err: %v", err)
 	//}
 	//fmt.Printf("del hash field success\n")
 
-	//res, err := glredis.NewGLRedis().SetWithExpire(rdb, []string{"name1"}, "golang", 60)
+	//has, err := glredis.NewGLRHash().HExistsHashField(rdb, []string{"book"}, "golang")
+	//if err != nil {
+	// log.Fatalf("err: %v", err)
+	//}
+	//fmt.Printf("has: %d", has)
+
+	//fields, err := glredis.NewGLRHash().HGetAllHashField(rdb, []string{"book"})
+	//if err != nil {
+	// log.Fatalf("err: %v", err)
+	//}
+	//fmt.Printf("fields: %v\n", fields)
+
+	//glredis.NewGLRHash().HIncrHashField(rdb, []string{"book"}, "php")
+
+	//glredis.NewGLRHash().HIncrByNumberHashField(rdb, []string{"book"}, "php", 2)
+
+	//glredis.NewGLRHash().HIncrByNumberHashField(rdb, []string{"book"}, "php", -1)
+
+	//glredis.NewGLRHash().HIncrByFloat64HashField(rdb, []string{"book"}, "php", 1.23)
+	//glredis.NewGLRHash().HIncrByFloat64HashField(rdb, []string{"book"}, "php", 2.0e2)
+
+	//glredis.NewGLRHash().HIncrByFloat32HashField(rdb, []string{"book"}, "php", -1.1)
+
+	//strings, err := glredis.NewGLRHash().HKeysHash(rdb, []string{"book"})
 	//if err != nil {
 	//	log.Fatalf("err: %v", err)
+	//}
+	//fmt.Printf("res: %v\n", strings)
+
+	strings, err := glredis.NewGLRHash().HValsHash(rdb, []string{"book"})
+	if err != nil {
+		log.Fatalf("err: %v", err)
+	}
+	fmt.Printf("res: %v\n", strings)
+
+	//nums, err := glredis.NewGLRHash().HLenHash(rdb, []string{"book"})
+	//if err != nil {
+	//	log.Fatalf("err: %v", err)
+	//}
+	//fmt.Printf("nums: %v\n", nums)
+
+	//res, err := glredis.NewGLRedis().SetWithExpire(rdb, []string{"name1"}, "golang", 60)
+	//if err != nil {
+	// log.Fatalf("err: %v", err)
 	//}
 	//fmt.Printf("res: %s\n", res)
 	//
 	//res1, err := glredis.NewGLRedis().PtlKey(rdb, []string{"name1"})
 	//if err != nil {
-	//	log.Fatalf("err: %v", err)
+	// log.Fatalf("err: %v", err)
 	//}
 	//fmt.Printf("res1: %d\n", res1)
 	//
 	//res2, err := glredis.NewGLRedis().MoveKeyToDb(rdb, []string{"name1"}, 2)
 	//if err != nil {
-	//	log.Fatalf("err: %v", err)
+	// log.Fatalf("err: %v", err)
 	//}
 	//fmt.Printf("res2: %d\n", res2)
 	//
 	//res, err = glredis.NewGLRedis().SetWithExpire(rdb, []string{"name2"}, "golang", 380)
 	//if err != nil {
-	//	log.Fatalf("err: %v", err)
+	// log.Fatalf("err: %v", err)
 	//}
 	//fmt.Printf("res: %s\n", res)
 	//
 	//res, err = glredis.NewGLRedis().SetWithExpire(rdb, []string{"name3"}, "golang", 380)
 	//if err != nil {
-	//	log.Fatalf("err: %v", err)
+	// log.Fatalf("err: %v", err)
 	//}
 	//fmt.Printf("res: %s\n", res)
 	//
 	//keys, err := glredis.NewGLRedis().PatternKeys(rdb, []string{"name*"})
 	//if err != nil {
-	//	log.Fatalf("err: %v", err)
+	// log.Fatalf("err: %v", err)
 	//}
 	//fmt.Printf("keys: %v\n", keys)
 	//
 	//ok, err := glredis.NewGLRedis().ExpireKey(rdb, []string{"name"}, 60)
 	//if err != nil {
-	//	log.Fatalf("err: %v", err)
+	// log.Fatalf("err: %v", err)
 	//}
 	//fmt.Printf("ok: %d\n", ok)
 	//
 	//has, err := glredis.NewGLRedis().ExistsKey(rdb, []string{"name"})
 	//if err != nil {
-	//	log.Fatalf("err: %v", err)
+	// log.Fatalf("err: %v", err)
 	//}
 	//fmt.Printf("has: %d\n", has)
 	//
 	//row, err := glredis.NewGLRedis().DelKey(rdb, []string{"name"})
 	//if err != nil {
-	//	log.Fatalf("err: %v", err)
+	// log.Fatalf("err: %v", err)
 	//}
 	//fmt.Printf("ok: %v\n", row)
 	//
 	//res, err = glredis.NewGLRedis().SetWithoutExpire(rdb, []string{"score"}, "80")
 	//if err != nil {
-	//	log.Fatalf("err: %v", err)
+	// log.Fatalf("err: %v", err)
 	//}
 	//fmt.Printf("res: %s\n", res)
 	//
 	//res, err = glredis.NewGLRedis().GetKey(rdb, []string{"name"})
 	//if err != nil && errors.Is(err, redis.Nil) {
-	//	log.Fatalf("err: %v", "key不存在")
+	// log.Fatalf("err: %v", "key不存在")
 	//} else {
-	//	log.Fatalf("err: %v", err)
+	// log.Fatalf("err: %v", err)
 	//}
 	//fmt.Printf("res: %s\n", res)
 	//
 	//res, err = glredis.NewGLRedis().GetOrSetWithExpire(rdb, []string{"name"}, "golang", 60)
 	//if err != nil {
-	//	log.Fatalf("err: %v", err)
+	// log.Fatalf("err: %v", err)
 	//}
 	//fmt.Printf("res: %s\n", res)
 	//
 	//res, err = glredis.NewGLRedis().GetOrSetWithoutExpire(rdb, []string{"age"}, "20")
 	//if err != nil {
-	//	log.Fatalf("err: %v", err)
+	// log.Fatalf("err: %v", err)
 	//}
 	//fmt.Printf("res: %s\n", res)
 }
